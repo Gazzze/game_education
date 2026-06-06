@@ -1,0 +1,151 @@
+/**
+ * EnglishQuest - Additional Game Styles
+ * Styles khusus untuk setiap mini-game
+ */
+
+/* ===== VOCABULARY GAME ===== */
+.vocab-game { animation: fadeIn 0.3s ease; }
+
+.options-grid .option-btn {
+  min-height: 70px;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem;
+}
+
+/* ===== SPELLING GAME ===== */
+.spelling-game { animation: fadeIn 0.3s ease; }
+
+/* ===== SENTENCE GAME ===== */
+.sentence-game { animation: fadeIn 0.3s ease; }
+
+/* ===== LISTENING GAME ===== */
+.listening-game { animation: fadeIn 0.3s ease; }
+
+.wave-bar {
+  width: 6px;
+  border-radius: 3px;
+  background: linear-gradient(to top, var(--primary), var(--purple));
+}
+
+/* ===== QUIZ GAME ===== */
+.quiz-game { animation: fadeIn 0.3s ease; }
+
+.q-progress-dots {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  margin-top: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.q-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.12);
+  transition: all 0.3s ease;
+}
+
+.q-dot.done {
+  background: var(--green);
+  box-shadow: 0 0 6px rgba(85,239,196,0.5);
+}
+
+.q-dot.current {
+  background: var(--accent);
+  transform: scale(1.4);
+  box-shadow: 0 0 8px rgba(255,230,109,0.6);
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* ===== CORRECT / WRONG FLASH ===== */
+.game-content.flash-correct {
+  animation: flashGreen 0.3s ease;
+}
+
+.game-content.flash-wrong {
+  animation: flashRed 0.3s ease;
+}
+
+@keyframes flashGreen {
+  0%, 100% { background: transparent; }
+  50% { background: rgba(85,239,196,0.08); }
+}
+
+@keyframes flashRed {
+  0%, 100% { background: transparent; }
+  50% { background: rgba(255,107,107,0.08); }
+}
+
+/* ===== LETTER SLOT ANIMATIONS ===== */
+.letter-slot.filled {
+  animation: slotFill 0.2s ease;
+}
+
+@keyframes slotFill {
+  0% { transform: scale(0.8); }
+  60% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+/* ===== WORD CHIP ANIMATIONS ===== */
+.word-chip {
+  animation: chipIn 0.2s ease;
+}
+
+@keyframes chipIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* ===== SCORE POPUP ===== */
+.score-popup {
+  position: fixed;
+  font-family: 'Fredoka One', cursive;
+  font-size: 1.5rem;
+  color: var(--accent);
+  pointer-events: none;
+  z-index: 300;
+  animation: scoreFloat 1s ease forwards;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+
+@keyframes scoreFloat {
+  0% { opacity: 1; transform: translateY(0) scale(1); }
+  100% { opacity: 0; transform: translateY(-80px) scale(0.8); }
+}
+
+/* ===== RESPONSIVE GAME ADJUSTMENTS ===== */
+@media (max-width: 480px) {
+  .options-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .game-content {
+    padding: 1rem;
+  }
+
+  .listen-btn {
+    margin: 1rem auto;
+  }
+
+  .play-audio-btn {
+    width: 80px;
+    height: 80px;
+    font-size: 2rem;
+  }
+}
