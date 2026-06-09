@@ -3,7 +3,7 @@
  * Mengontrol alur aplikasi, state manajemen, dan player data
  */
 
-// ===== PLAYER DATA MANAGER =====
+// ===== PLAYER DATA MANAGER =======
 const PlayerData = (() => {
   const KEY = 'englishquest_data';
 
