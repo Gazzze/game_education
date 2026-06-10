@@ -1,299 +1,418 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EnglishQuest - Belajar Bahasa Inggris</title>
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="stylesheet" href="css/games.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
-</head>
-<body>
-
-  <!-- LOADING SCREEN -->
-  <div id="loading-screen" class="screen active" style="display:flex;align-items:center;justify-content:center;">
-    <div class="loading-content">
-      <div class="logo-anim">
-        <span class="logo-letter" style="--i:0">E</span>
-        <span class="logo-letter" style="--i:1">n</span>
-        <span class="logo-letter" style="--i:2">g</span>
-        <span class="logo-letter" style="--i:3">l</span>
-        <span class="logo-letter" style="--i:4">i</span>
-        <span class="logo-letter" style="--i:5">s</span>
-        <span class="logo-letter" style="--i:6">h</span>
-        &nbsp;
-        <span class="logo-letter" style="--i:7">Q</span>
-        <span class="logo-letter" style="--i:8">u</span>
-        <span class="logo-letter" style="--i:9">e</span>
-        <span class="logo-letter" style="--i:10">s</span>
-        <span class="logo-letter" style="--i:11">t</span>
-      </div>
-      <div class="loading-bar-wrap"><div class="loading-bar" id="loading-bar"></div></div>
-      <p class="loading-text">Loading adventure... 🚀</p>
-    </div>
-    <div class="bubble" style="--x:10%;--d:3s;--s:40px"></div>
-    <div class="bubble" style="--x:25%;--d:5s;--s:25px"></div>
-    <div class="bubble" style="--x:50%;--d:4s;--s:55px"></div>
-    <div class="bubble" style="--x:70%;--d:6s;--s:30px"></div>
-    <div class="bubble" style="--x:85%;--d:3.5s;--s:45px"></div>
-  </div>
-
-  <!-- HOME SCREEN -->
-  <div id="home-screen" class="screen">
-    <canvas id="bg-canvas"></canvas>
-    <nav class="top-nav">
-      <div class="nav-logo">🦁 EnglishQuest</div>
-      <div class="nav-stats">
-        <span class="stat-badge">⭐ <span id="total-stars">0</span></span>
-        <span class="stat-badge">🏆 Lv.<span id="player-level">1</span></span>
-        <span class="stat-badge player-name-badge">👤 <span id="player-name-display">Player</span></span>
-        <button class="btn-icon-round" id="sound-toggle" onclick="toggleSound()" title="Toggle Sound">🔊</button>
-        <button class="btn-icon-round" onclick="showLeaderboard()" title="Leaderboard">📊</button>
-      </div>
-    </nav>
-
-    <div class="hero-section">
-      <div class="hero-text">
-        <h1>Belajar Bahasa Inggris<br/><span class="highlight">Seru &amp; Menyenangkan!</span></h1>
-        <p class="hero-sub">Petualangan kata-kata menantimu! Mainkan mini-game, kumpulkan bintang, dan jadi jagoan bahasa Inggris. 🌟</p>
-        <div class="hero-btns">
-          <button class="btn-primary btn-play" onclick="showPlayerSetup()">🚀 Mulai Petualangan!</button>
-          <button class="btn-secondary" onclick="openPDF()">📖 Buku Panduan</button>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EnglishQuest - Belajar Bahasa Inggris</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/games.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- LOADING SCREEN -->
+    <div
+      id="loading-screen"
+      class="screen active"
+      style="display: flex; align-items: center; justify-content: center"
+    >
+      <div class="loading-content">
+        <div class="logo-anim">
+          <span class="logo-letter" style="--i: 0">E</span>
+          <span class="logo-letter" style="--i: 1">n</span>
+          <span class="logo-letter" style="--i: 2">g</span>
+          <span class="logo-letter" style="--i: 3">l</span>
+          <span class="logo-letter" style="--i: 4">i</span>
+          <span class="logo-letter" style="--i: 5">s</span>
+          <span class="logo-letter" style="--i: 6">h</span>
+          &nbsp;
+          <span class="logo-letter" style="--i: 7">Q</span>
+          <span class="logo-letter" style="--i: 8">u</span>
+          <span class="logo-letter" style="--i: 9">e</span>
+          <span class="logo-letter" style="--i: 10">s</span>
+          <span class="logo-letter" style="--i: 11">t</span>
         </div>
-      </div>
-      <div class="hero-mascot">
-        <div class="mascot-wrap">
-          <div class="mascot-emoji" id="mascot-avatar">🦁</div>
-          <div class="mascot-bubble" id="mascot-bubble">Hi! Ready to learn English?</div>
+        <div class="loading-bar-wrap">
+          <div class="loading-bar" id="loading-bar"></div>
         </div>
+        <p class="loading-text">Loading adventure... 🚀</p>
       </div>
+      <div class="bubble" style="--x: 10%; --d: 3s; --s: 40px"></div>
+      <div class="bubble" style="--x: 25%; --d: 5s; --s: 25px"></div>
+      <div class="bubble" style="--x: 50%; --d: 4s; --s: 55px"></div>
+      <div class="bubble" style="--x: 70%; --d: 6s; --s: 30px"></div>
+      <div class="bubble" style="--x: 85%; --d: 3.5s; --s: 45px"></div>
     </div>
 
-    <div class="games-section">
-      <h2 class="section-title">🎮 Pilih Mini-Game</h2>
-      <div class="game-cards">
-        <div class="game-card" onclick="startGame('vocabulary')">
-          <div class="card-bg card-bg-blue"></div>
-          <div class="card-icon">📚</div>
-          <h3>Word Match</h3>
-          <p>Cocokkan kata dengan artinya</p>
-          <div class="card-stars" id="stars-vocabulary">☆☆☆</div>
-          <div class="card-tag tag-blue">Vocabulary</div>
+    <!-- HOME SCREEN -->
+    <div id="home-screen" class="screen">
+      <canvas id="bg-canvas"></canvas>
+      <nav class="top-nav">
+        <div class="nav-logo">🦁 EnglishQuest</div>
+        <div class="nav-stats">
+          <span class="stat-badge">⭐ <span id="total-stars">0</span></span>
+          <span class="stat-badge">🏆 Lv.<span id="player-level">1</span></span>
+          <span class="stat-badge player-name-badge"
+            >👤 <span id="player-name-display">Player</span></span
+          >
+          <button
+            class="btn-icon-round"
+            id="sound-toggle"
+            onclick="toggleSound()"
+            title="Toggle Sound"
+          >
+            🔊
+          </button>
+          <button
+            class="btn-icon-round"
+            onclick="showLeaderboard()"
+            title="Leaderboard"
+          >
+            📊
+          </button>
         </div>
-        <div class="game-card" onclick="startGame('spelling')">
-          <div class="card-bg card-bg-green"></div>
-          <div class="card-icon">✏️</div>
-          <h3>Spell It!</h3>
-          <p>Susun huruf jadi kata yang benar</p>
-          <div class="card-stars" id="stars-spelling">☆☆☆</div>
-          <div class="card-tag tag-green">Spelling</div>
+      </nav>
+
+      <div class="hero-section">
+        <div class="hero-text">
+          <h1>
+            Belajar Bahasa Inggris<br /><span class="highlight"
+              >Seru &amp; Menyenangkan!</span
+            >
+          </h1>
+          <p class="hero-sub">
+            Petualangan kata-kata menantimu! Mainkan mini-game, kumpulkan
+            bintang, dan jadi jagoan bahasa Inggris. 🌟
+          </p>
+          <div class="hero-btns">
+            <button class="btn-primary btn-play" onclick="showPlayerSetup()">
+              🚀 Mulai Petualangan!
+            </button>
+            <button class="btn-secondary" onclick="openPDF()">
+              📖 Buku Panduan
+            </button>
+          </div>
         </div>
-        <div class="game-card" onclick="startGame('sentence')">
-          <div class="card-bg card-bg-orange"></div>
-          <div class="card-icon">🧩</div>
-          <h3>Sentence Builder</h3>
-          <p>Susun kata jadi kalimat</p>
-          <div class="card-stars" id="stars-sentence">☆☆☆</div>
-          <div class="card-tag tag-orange">Grammar</div>
+        <div class="hero-mascot">
+          <div class="mascot-wrap">
+            <div class="mascot-emoji" id="mascot-avatar">🦁</div>
+            <div class="mascot-bubble" id="mascot-bubble">
+              Hi! Ready to learn English?
+            </div>
+          </div>
         </div>
-        <div class="game-card" onclick="startGame('listening')">
-          <div class="card-bg card-bg-purple"></div>
-          <div class="card-icon">🎵</div>
-          <h3>Listen &amp; Pick</h3>
-          <p>Dengar kata lalu pilih jawaban</p>
-          <div class="card-stars" id="stars-listening">☆☆☆</div>
-          <div class="card-tag tag-purple">Listening</div>
+      </div>
+
+      <div class="games-section">
+        <h2 class="section-title">🎮 Pilih Mini-Game</h2>
+        <div class="game-cards">
+          <div class="game-card" onclick="startGame('vocabulary')">
+            <div class="card-bg card-bg-blue"></div>
+            <div class="card-icon">📚</div>
+            <h3>Word Match</h3>
+            <p>Cocokkan kata dengan artinya</p>
+            <div class="card-stars" id="stars-vocabulary">☆☆☆</div>
+            <div class="card-tag tag-blue">Vocabulary</div>
+          </div>
+          <div class="game-card" onclick="startGame('spelling')">
+            <div class="card-bg card-bg-green"></div>
+            <div class="card-icon">✏️</div>
+            <h3>Spell It!</h3>
+            <p>Susun huruf jadi kata yang benar</p>
+            <div class="card-stars" id="stars-spelling">☆☆☆</div>
+            <div class="card-tag tag-green">Spelling</div>
+          </div>
+          <div class="game-card" onclick="startGame('sentence')">
+            <div class="card-bg card-bg-orange"></div>
+            <div class="card-icon">🧩</div>
+            <h3>Sentence Builder</h3>
+            <p>Susun kata jadi kalimat</p>
+            <div class="card-stars" id="stars-sentence">☆☆☆</div>
+            <div class="card-tag tag-orange">Grammar</div>
+          </div>
+          <div class="game-card" onclick="startGame('listening')">
+            <div class="card-bg card-bg-purple"></div>
+            <div class="card-icon">🎵</div>
+            <h3>Listen &amp; Pick</h3>
+            <p>Dengar kata lalu pilih jawaban</p>
+            <div class="card-stars" id="stars-listening">☆☆☆</div>
+            <div class="card-tag tag-purple">Listening</div>
+          </div>
+          <div class="game-card" onclick="startGame('quiz')">
+            <div class="card-bg card-bg-red"></div>
+            <div class="card-icon">🎯</div>
+            <h3>Quick Quiz</h3>
+            <p>Kuis cepat pilihan ganda</p>
+            <div class="card-stars" id="stars-quiz">☆☆☆</div>
+            <div class="card-tag tag-red">Mixed</div>
+          </div>
+          <div class="game-card" onclick="showAchievements()">
+            <div class="card-bg card-bg-gold"></div>
+            <div class="card-icon">🏅</div>
+            <h3>Achievements</h3>
+            <p>Lihat semua pencapaianmu</p>
+            <div class="card-stars" id="ach-count">0 / 10</div>
+            <div class="card-tag tag-gold">Rewards</div>
+          </div>
         </div>
-        <div class="game-card" onclick="startGame('quiz')">
-          <div class="card-bg card-bg-red"></div>
-          <div class="card-icon">🎯</div>
-          <h3>Quick Quiz</h3>
-          <p>Kuis cepat pilihan ganda</p>
-          <div class="card-stars" id="stars-quiz">☆☆☆</div>
-          <div class="card-tag tag-red">Mixed</div>
+      </div>
+
+      <div class="progress-section">
+        <h2 class="section-title">📊 Progres Belajarmu</h2>
+        <div class="progress-grid">
+          <div class="progress-item">
+            <label>📚 Vocabulary</label>
+            <div class="prog-bar">
+              <div
+                class="prog-fill fill-blue"
+                id="prog-vocabulary"
+                style="width: 0%"
+              ></div>
+            </div>
+            <span class="prog-pct" id="pct-vocabulary">0%</span>
+          </div>
+          <div class="progress-item">
+            <label>✏️ Spelling</label>
+            <div class="prog-bar">
+              <div
+                class="prog-fill fill-green"
+                id="prog-spelling"
+                style="width: 0%"
+              ></div>
+            </div>
+            <span class="prog-pct" id="pct-spelling">0%</span>
+          </div>
+          <div class="progress-item">
+            <label>🧩 Grammar</label>
+            <div class="prog-bar">
+              <div
+                class="prog-fill fill-orange"
+                id="prog-sentence"
+                style="width: 0%"
+              ></div>
+            </div>
+            <span class="prog-pct" id="pct-sentence">0%</span>
+          </div>
+          <div class="progress-item">
+            <label>🎵 Listening</label>
+            <div class="prog-bar">
+              <div
+                class="prog-fill fill-purple"
+                id="prog-listening"
+                style="width: 0%"
+              ></div>
+            </div>
+            <span class="prog-pct" id="pct-listening">0%</span>
+          </div>
         </div>
-        <div class="game-card" onclick="showAchievements()">
-          <div class="card-bg card-bg-gold"></div>
-          <div class="card-icon">🏅</div>
-          <h3>Achievements</h3>
-          <p>Lihat semua pencapaianmu</p>
-          <div class="card-stars" id="ach-count">0 / 10</div>
-          <div class="card-tag tag-gold">Rewards</div>
+        <div class="xp-section">
+          <label>⚡ Total XP</label>
+          <div class="xp-bar-wrap">
+            <div class="xp-bar" id="xp-bar" style="width: 0%"></div>
+            <span class="xp-label" id="xp-label">0 / 100 XP</span>
+          </div>
+        </div>
+      </div>
+
+      <canvas id="audio-visualizer" class="audio-vis"></canvas>
+      <footer class="footer">
+        <p>
+          EnglishQuest © 2024 · Sistem Multimedia · Media Pendidikan Interaktif
+        </p>
+      </footer>
+    </div>
+
+    <!-- PLAYER SETUP MODAL -->
+    <div id="player-setup-modal" class="modal-overlay" style="display: none">
+      <div class="modal-box setup-box">
+        <h2>👋 Halo! Siapa namamu?</h2>
+        <input
+          type="text"
+          id="player-name-input"
+          placeholder="Masukkan namamu..."
+          maxlength="20"
+          class="name-input"
+        />
+        <div class="avatar-select">
+          <p>Pilih avatar jagoanmu:</p>
+          <div class="avatars">
+            <span class="avatar-opt selected" onclick="selectAvatar(this, '🦁')"
+              >🦁</span
+            >
+            <span class="avatar-opt" onclick="selectAvatar(this, '🐯')"
+              >🐯</span
+            >
+            <span class="avatar-opt" onclick="selectAvatar(this, '🦊')"
+              >🦊</span
+            >
+            <span class="avatar-opt" onclick="selectAvatar(this, '🐸')"
+              >🐸</span
+            >
+            <span class="avatar-opt" onclick="selectAvatar(this, '🐧')"
+              >🐧</span
+            >
+            <span class="avatar-opt" onclick="selectAvatar(this, '🦄')"
+              >🦄</span
+            >
+            <span class="avatar-opt" onclick="selectAvatar(this, '🐉')"
+              >🐉</span
+            >
+            <span class="avatar-opt" onclick="selectAvatar(this, '🦋')"
+              >🦋</span
+            >
+          </div>
+        </div>
+        <button class="btn-primary full-width" onclick="confirmPlayer()">
+          Let's Go! 🚀
+        </button>
+      </div>
+    </div>
+
+    <!-- GAME SCREEN -->
+    <div id="game-screen" class="screen">
+      <div class="game-topbar">
+        <button class="btn-back" onclick="goHome()">← Home</button>
+        <div class="game-meta">
+          <span id="game-title-bar" class="game-title-bar">Game</span>
+          <span class="q-counter" id="q-counter">1/10</span>
+        </div>
+        <div class="game-hud">
+          <span class="score-badge">⭐ <span id="current-score">0</span></span>
+          <span class="timer-badge" id="timer-display">⏱ 30</span>
+          <span class="lives-badge" id="lives-display">❤️❤️❤️</span>
+        </div>
+      </div>
+      <div class="timer-strip-wrap">
+        <div class="timer-strip" id="timer-strip"></div>
+      </div>
+      <div id="game-content" class="game-content"></div>
+      <div id="feedback-overlay" class="feedback-overlay" style="display: none">
+        <div class="feedback-box" id="feedback-box">
+          <div class="feedback-icon" id="feedback-icon">✅</div>
+          <div class="feedback-msg" id="feedback-msg">Correct!</div>
         </div>
       </div>
     </div>
 
-    <div class="progress-section">
-      <h2 class="section-title">📊 Progres Belajarmu</h2>
-      <div class="progress-grid">
-        <div class="progress-item">
-          <label>📚 Vocabulary</label>
-          <div class="prog-bar"><div class="prog-fill fill-blue" id="prog-vocabulary" style="width:0%"></div></div>
-          <span class="prog-pct" id="pct-vocabulary">0%</span>
-        </div>
-        <div class="progress-item">
-          <label>✏️ Spelling</label>
-          <div class="prog-bar"><div class="prog-fill fill-green" id="prog-spelling" style="width:0%"></div></div>
-          <span class="prog-pct" id="pct-spelling">0%</span>
-        </div>
-        <div class="progress-item">
-          <label>🧩 Grammar</label>
-          <div class="prog-bar"><div class="prog-fill fill-orange" id="prog-sentence" style="width:0%"></div></div>
-          <span class="prog-pct" id="pct-sentence">0%</span>
-        </div>
-        <div class="progress-item">
-          <label>🎵 Listening</label>
-          <div class="prog-bar"><div class="prog-fill fill-purple" id="prog-listening" style="width:0%"></div></div>
-          <span class="prog-pct" id="pct-listening">0%</span>
-        </div>
-      </div>
-      <div class="xp-section">
-        <label>⚡ Total XP</label>
-        <div class="xp-bar-wrap">
-          <div class="xp-bar" id="xp-bar" style="width:0%"></div>
-          <span class="xp-label" id="xp-label">0 / 100 XP</span>
-        </div>
-      </div>
-    </div>
-
-    <canvas id="audio-visualizer" class="audio-vis"></canvas>
-    <footer class="footer">
-      <p>EnglishQuest © 2024 · Sistem Multimedia · Media Pendidikan Interaktif</p>
-    </footer>
-  </div>
-
-  <!-- PLAYER SETUP MODAL -->
-  <div id="player-setup-modal" class="modal-overlay" style="display:none">
-    <div class="modal-box setup-box">
-      <h2>👋 Halo! Siapa namamu?</h2>
-      <input type="text" id="player-name-input" placeholder="Masukkan namamu..." maxlength="20" class="name-input" />
-      <div class="avatar-select">
-        <p>Pilih avatar jagoanmu:</p>
-        <div class="avatars">
-          <span class="avatar-opt selected" onclick="selectAvatar(this,'🦁')">🦁</span>
-          <span class="avatar-opt" onclick="selectAvatar(this,'🐯')">🐯</span>
-          <span class="avatar-opt" onclick="selectAvatar(this,'🦊')">🦊</span>
-          <span class="avatar-opt" onclick="selectAvatar(this,'🐸')">🐸</span>
-          <span class="avatar-opt" onclick="selectAvatar(this,'🐧')">🐧</span>
-          <span class="avatar-opt" onclick="selectAvatar(this,'🦄')">🦄</span>
-          <span class="avatar-opt" onclick="selectAvatar(this,'🐉')">🐉</span>
-          <span class="avatar-opt" onclick="selectAvatar(this,'🦋')">🦋</span>
-        </div>
-      </div>
-      <button class="btn-primary full-width" onclick="confirmPlayer()">Let's Go! 🚀</button>
-    </div>
-  </div>
-
-  <!-- GAME SCREEN -->
-  <div id="game-screen" class="screen">
-    <div class="game-topbar">
-      <button class="btn-back" onclick="goHome()">← Home</button>
-      <div class="game-meta">
-        <span id="game-title-bar" class="game-title-bar">Game</span>
-        <span class="q-counter" id="q-counter">1/10</span>
-      </div>
-      <div class="game-hud">
-        <span class="score-badge">⭐ <span id="current-score">0</span></span>
-        <span class="timer-badge" id="timer-display">⏱ 30</span>
-        <span class="lives-badge" id="lives-display">❤️❤️❤️</span>
-      </div>
-    </div>
-    <div class="timer-strip-wrap"><div class="timer-strip" id="timer-strip"></div></div>
-    <div id="game-content" class="game-content"></div>
-    <div id="feedback-overlay" class="feedback-overlay" style="display:none">
-      <div class="feedback-box" id="feedback-box">
-        <div class="feedback-icon" id="feedback-icon">✅</div>
-        <div class="feedback-msg" id="feedback-msg">Correct!</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- RESULT SCREEN -->
-  <div id="result-screen" class="screen">
-    <div class="result-container">
-      <canvas id="fireworks-canvas" class="fireworks-canvas"></canvas>
-      <div class="result-card">
-        <div class="result-trophy" id="result-trophy">🏆</div>
-        <h1 id="result-title">Great Job!</h1>
-        <p id="result-subtitle">Kamu berhasil menyelesaikan game ini!</p>
-        <div class="result-stats">
-          <div class="rstat"><span class="rstat-val" id="res-score">0</span><span class="rstat-lbl">Score</span></div>
-          <div class="rstat"><span class="rstat-val" id="res-stars">⭐⭐⭐</span><span class="rstat-lbl">Stars</span></div>
-          <div class="rstat"><span class="rstat-val" id="res-correct">0/0</span><span class="rstat-lbl">Correct</span></div>
-          <div class="rstat"><span class="rstat-val" id="res-time">0s</span><span class="rstat-lbl">Time</span></div>
-        </div>
-        <div class="result-stars-row" id="result-stars-row"></div>
-        <div class="result-xp-gain" id="result-xp-gain">+50 XP</div>
-        <div class="result-btns">
-          <button class="btn-primary" onclick="replayGame()">🔄 Main Lagi</button>
-          <button class="btn-secondary" onclick="goHome()">🏠 Home</button>
+    <!-- RESULT SCREEN -->
+    <div id="result-screen" class="screen">
+      <div class="result-container">
+        <canvas id="fireworks-canvas" class="fireworks-canvas"></canvas>
+        <div class="result-card">
+          <div class="result-trophy" id="result-trophy">🏆</div>
+          <h1 id="result-title">Great Job!</h1>
+          <p id="result-subtitle">Kamu berhasil menyelesaikan game ini!</p>
+          <div class="result-stats">
+            <div class="rstat">
+              <span class="rstat-val" id="res-score">0</span
+              ><span class="rstat-lbl">Score</span>
+            </div>
+            <div class="rstat">
+              <span class="rstat-val" id="res-stars">⭐⭐⭐</span
+              ><span class="rstat-lbl">Stars</span>
+            </div>
+            <div class="rstat">
+              <span class="rstat-val" id="res-correct">0/0</span
+              ><span class="rstat-lbl">Correct</span>
+            </div>
+            <div class="rstat">
+              <span class="rstat-val" id="res-time">0s</span
+              ><span class="rstat-lbl">Time</span>
+            </div>
+          </div>
+          <div class="result-stars-row" id="result-stars-row"></div>
+          <div class="result-xp-gain" id="result-xp-gain">+50 XP</div>
+          <div class="result-btns">
+            <button class="btn-primary" onclick="replayGame()">
+              🔄 Main Lagi
+            </button>
+            <button class="btn-secondary" onclick="goHome()">🏠 Home</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- ACHIEVEMENTS MODAL -->
-  <div id="achievement-modal" class="modal-overlay" style="display:none">
-    <div class="modal-box modal-large">
-      <h2>🏅 Achievements</h2>
-      <div id="achievement-list" class="achievement-list"></div>
-      <button class="btn-secondary" onclick="closeModal('achievement-modal')">Tutup</button>
-    </div>
-  </div>
-
-  <!-- LEADERBOARD MODAL -->
-  <div id="leaderboard-modal" class="modal-overlay" style="display:none">
-    <div class="modal-box modal-large">
-      <h2>📊 Papan Skor Tertinggi</h2>
-      <div id="leaderboard-list" class="leaderboard-list"></div>
-      <button class="btn-secondary" onclick="closeModal('leaderboard-modal')">Tutup</button>
-    </div>
-  </div>
-
-  <!-- PDF MODAL -->
-  <div id="pdf-modal" class="modal-overlay" style="display:none">
-    <div class="modal-box modal-pdf">
-      <h2>📖 Buku Panduan EnglishQuest</h2>
-      <div id="pdf-content" class="pdf-content"></div>
-      <div class="pdf-btns">
-        <button class="btn-primary" onclick="downloadPDF()">⬇️ Download PDF</button>
-        <button class="btn-secondary" onclick="closeModal('pdf-modal')">Tutup</button>
+    <!-- ACHIEVEMENTS MODAL -->
+    <div id="achievement-modal" class="modal-overlay" style="display: none">
+      <div class="modal-box modal-large">
+        <h2>🏅 Achievements</h2>
+        <div id="achievement-list" class="achievement-list"></div>
+        <button class="btn-secondary" onclick="closeModal('achievement-modal')">
+          Tutup
+        </button>
       </div>
     </div>
-  </div>
 
-  <!-- Toast -->
-  <div id="toast" class="toast"></div>
+    <!-- LEADERBOARD MODAL -->
+    <div id="leaderboard-modal" class="modal-overlay" style="display: none">
+      <div class="modal-box modal-large">
+        <h2>📊 Papan Skor Tertinggi</h2>
+        <div id="leaderboard-list" class="leaderboard-list"></div>
+        <button class="btn-secondary" onclick="closeModal('leaderboard-modal')">
+          Tutup
+        </button>
+      </div>
+    </div>
 
-  <!-- Scripts -->
-  <script src="js/audio.js"></script>
-  <script src="js/data.js"></script>
-  <script src="js/games/vocabulary.js"></script>
-  <script src="js/games/spelling.js"></script>
-  <script src="js/games/sentence.js"></script>
-  <script src="js/games/listening.js"></script>
-  <script src="js/games/quiz.js"></script>
-  <script src="js/ui.js"></script>
-  <script src="js/pdf.js"></script>
-  <script src="js/main.js"></script>
+    <!-- PDF MODAL -->
+    <div id="pdf-modal" class="modal-overlay" style="display: none">
+      <div class="modal-box modal-pdf">
+        <h2>📖 Buku Panduan EnglishQuest</h2>
+        <div id="pdf-content" class="pdf-content"></div>
+        <div class="pdf-btns">
+          <button class="btn-primary" onclick="downloadPDF()">
+            ⬇️ Download PDF
+          </button>
+          <button class="btn-secondary" onclick="closeModal('pdf-modal')">
+            Tutup
+          </button>
+        </div>
+      </div>
+    </div>
 
-  <!-- Fallback: if JS fails to load, force dismiss loading after 6s -->
-  <script>
-    window.addEventListener('load', function() {
-      setTimeout(function() {
-        var ls = document.getElementById('loading-screen');
-        var hs = document.getElementById('home-screen');
-        if (ls && (ls.style.display !== 'none' && ls.classList.contains('active'))) {
-          console.warn('EnglishQuest: fallback loader triggered');
-          try { finishLoading(); } catch(e) {
-            ls.style.display = 'none';
-            ls.classList.remove('active');
-            if (hs) { hs.style.display = 'block'; hs.classList.add('active'); }
+    <!-- Toast -->
+    <div id="toast" class="toast"></div>
+
+    <!-- Scripts -->
+    <script src="js/audio.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/games/vocabulary.js"></script>
+    <script src="js/games/spelling.js"></script>
+    <script src="js/games/sentence.js"></script>
+    <script src="js/games/listening.js"></script>
+    <script src="js/games/quiz.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/pdf.js"></script>
+    <script src="js/main.js"></script>
+
+    <!-- Fallback: if JS fails to load, force dismiss loading after 6s -->
+    <script>
+      window.addEventListener("load", function () {
+        setTimeout(function () {
+          var ls = document.getElementById("loading-screen");
+          var hs = document.getElementById("home-screen");
+          if (
+            ls &&
+            ls.style.display !== "none" &&
+            ls.classList.contains("active")
+          ) {
+            console.warn("EnglishQuest: fallback loader triggered");
+            try {
+              finishLoading();
+            } catch (e) {
+              ls.style.display = "none";
+              ls.classList.remove("active");
+              if (hs) {
+                hs.style.display = "block";
+                hs.classList.add("active");
+              }
+            }
           }
-        }
-      }, 6000);
-    });
-  </script>
-</body>
+        }, 6000);
+      });
+    </script>
+  </body>
 </html>
